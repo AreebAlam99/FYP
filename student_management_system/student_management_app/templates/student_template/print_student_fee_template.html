@@ -1,0 +1,220 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Student Fee || {{student_name}}
+{% endblock page_title %}
+{% block main_content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .row {
+    margin-left:-5px;
+    margin-right:-5px;
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other on screens that are smaller than 600 px */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+@media print {
+  #printButton{
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="column">
+    <table>
+      <tr>
+      <td><img src="/static/dist/img/FcitLogo.png" alt="Logo"></td>
+      <td></td>
+      </tr>
+      {% for fee in st_accounts %}
+      <tr>
+        <th>{{fee.bank_name}}</th>
+        <th>{{fee.account_number}}</th>
+      </tr>
+      <tr>
+        <th style="text-align:center;">Bank Copy</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.id }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.student }} , {{student_name}}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.session_year_id.session_start_year }} - {{ fee.session_year_id.session_end_year }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Fee Type</td>
+        <td>{{ fee.fee_type }}</td>
+      </tr>
+      <tr>
+        <td>Fee Amount</td>
+        <td>{{ fee.amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Amount</td>
+        <td>{{ fee.total_amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Paid</td>
+        <td>{{ fee.total_paid }}</td>
+      </tr>
+        <td>Balance Left</td>
+        <td>{{ fee.balance_left }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr>
+      <td><img src="/static/dist/img/FcitLogo.png" alt="Logo"></td>
+      <td></td>
+      </tr>
+      {% for fee in st_accounts %}
+      <tr>
+        <th>{{fee.bank_name}}</th>
+        <th>{{fee.account_number}}</th>
+      </tr>
+      <tr>
+        <th style="text-align:center;">Accounts Copy</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.id }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.student }} , {{student_name}}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.session_year_id.session_start_year }} - {{ fee.session_year_id.session_end_year }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Fee Type</td>
+        <td>{{ fee.fee_type }}</td>
+      </tr>
+      <tr>
+        <td>Fee Amount</td>
+        <td>{{ fee.amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Amount</td>
+        <td>{{ fee.total_amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Paid</td>
+        <td>{{ fee.total_paid }}</td>
+      </tr>
+        <td>Balance Left</td>
+        <td>{{ fee.balance_left }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr>
+      <td><img src="/static/dist/img/FcitLogo.png" alt="Logo"></td>
+      <td></td>
+      </tr>
+      {% for fee in st_accounts %}
+      <tr>
+        <th>{{fee.bank_name}}</th>
+        <th>{{fee.account_number}}</th>
+      </tr>
+      <tr>
+        <th style="text-align:center;">Student Copy</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.id }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.student }} , {{student_name}}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th style="text-align:center;">{{ fee.session_year_id.session_start_year }} - {{ fee.session_year_id.session_end_year }}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Fee Type</td>
+        <td>{{ fee.fee_type }}</td>
+      </tr>
+      <tr>
+        <td>Fee Amount</td>
+        <td>{{ fee.amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Amount</td>
+        <td>{{ fee.total_amount }}</td>
+      </tr>
+      <tr>
+        <td>Total Paid</td>
+        <td>{{ fee.total_paid }}</td>
+      </tr>
+        <td>Balance Left</td>
+        <td>{{ fee.balance_left }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<div>
+  <center>
+    <button id= "printButton" class="btn btn-primary" onclick="window.print()">Print</button>
+  </center>
+</div>
+</body>
+</html>
+{% endblock main_content %}

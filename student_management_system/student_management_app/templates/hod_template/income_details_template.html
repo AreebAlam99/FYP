@@ -1,0 +1,65 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Income Detail
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Income Detail</h3>
+                <br>
+                <h3>Total Income: {{total_amount_student}}</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Sr#</th>
+                      <th>Income Head</th>
+                      <th>Student Username</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Comment</th>
+                      <th>Delete</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for income in incomes %}
+                    <tr>
+                      <td>{{ income.id }}</td>
+                      <td>{{ income.income_head }}</td>
+                      <td>{{ income.student }}</td>
+                      <td>{{ income.date }}</td>
+                      <td>{{ income.amount }}</td>
+                      <td>{{ income.comment }}</td>
+                      <td><a href="{% url 'delete_income_detail' income_id=income.id %}" class="btn btn-success">Delete</a></td>
+                      <td><a href="{% url 'edit_income_detail' income_id=income.id %}" class="btn btn-success">Edit</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

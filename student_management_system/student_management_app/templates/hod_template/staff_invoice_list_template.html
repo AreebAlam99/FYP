@@ -1,0 +1,72 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Invoices
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Staff Details</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Invoice ID</th>
+                      <th>Username</th>
+                      <th>Date Joined</th>
+                      <th>Payable</th>
+                      <th>Total paid</th>
+                      <th>Balance</th>
+                      <th>Add payment</th>
+                      <th>Show payment History</th>
+                      <th>Delete</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for invoice in invoices %}
+                    <tr>
+                      <td>{{ invoice.id }}</td>
+                      <td>{{ invoice.staff}}</td>
+                      <td>{{ invoice.session_year_id.session_start_year }} TO {{ invoice.session_year_id.session_end_year }}</td>
+                      <td>{{ invoice.total_amount }}</td>
+                      <td>{{ invoice.total_paid }}</td>
+                      <td>{{ invoice.balance_left}}</td>
+                      <td><a href="{% url 'staff_invoice_list_payment' invoice_id=invoice.id %}" class="btn btn-success">Add Payment</a></td>
+                      <td><a href="{% url 'staff_invoice_list_payment_history' invoice_id=invoice.id %}" class="btn btn-success">Show History</a></td>
+                      <td><a href="{% url 'delete_staff_invoice' invoice_id=invoice.id %}" class="btn btn-success">Delete</a></td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

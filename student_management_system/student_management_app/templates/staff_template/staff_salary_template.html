@@ -1,0 +1,60 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+Salary || {{staff_name}}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Staff Salary</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="table">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Username </th>
+                            <th>Name </th>
+                            <th>Session </th>
+                            <th>Prev Balance</th>
+                            <th>Pay Type</th>
+                            <th>Pay Amount</th>
+                            <th>Total Amount</th>
+                            <th>Total Paid</th>
+                            <th>Balance Left</th>
+                        </tr>
+                        {% for pay in stf_accounts %}
+                        <tr>
+                            <td>{{ pay.id }}</td>
+                            <td>{{ pay.staff }}</td>
+                            <td>{{staff_name}}</td>
+                            <td>{{ pay.session_year_id.session_start_year }} - {{ pay.session_year_id.session_end_year }}</td>
+                            <td>{{ pay.balance }}</td>
+                            <td>{{ pay.pay_type }}</td>
+                            <td>{{ pay.amount }}</td>
+                            <td>{{ pay.total_amount }}</td>
+                            <td>{{ pay.total_paid }}</td>
+                            <td>{{ pay.balance_left }}</td>
+                            
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+{% endblock main_content %}

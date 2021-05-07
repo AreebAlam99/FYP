@@ -1,0 +1,66 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Edit Expenditure Head |  Expenditure Head ID : {{ expenditure_head.id }}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit Expenditure Head</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/edit_expenditure_head_save" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>ID </label>
+                        <input type="text" class="form-control" name="expenditure_head_id" value="{{ expenditure_head.id }}">
+                      </div>
+
+                  <div class="form-group">
+                    <label>Expenditure Head </label>
+                    <input type="text" class="form-control" name="expenditure" placeholder="Enter Head Name" value="{{ expenditure_head.expenditure_head }}">
+                    <input type="hidden"  name="expenditure_head.id"  value="{{ expenditure_head.id }}">
+                  </div>
+                  <div class="form-group">
+                    <label>Comment </label>
+                    <input type="text" class="form-control" name="comment" placeholder="Comments" value="{{ expenditure_head.comment }}">
+                    <input type="hidden"  name="expenditure_head.id"  value="{{ expenditure_head.id }}">
+                  </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Save Income Head</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

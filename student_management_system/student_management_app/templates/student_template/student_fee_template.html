@@ -1,0 +1,62 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Student Fee || {{student_name}}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Student Feedback</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="table">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Username </th>
+                            <th>Name </th>
+                            <th>Session </th>
+                            <th>Prev Balance</th>
+                            <th>Fee Type</th>
+                            <th>Fee Amount</th>
+                            <th>Total Amount</th>
+                            <th>Total Paid</th>
+                            <th>Balance Left</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for fee in st_accounts %}
+                        <tr>
+                            <td>{{ fee.id }}</td>
+                            <!--<td>{{ feedback.student_id.admin.id }}</td>   -->
+                            <td>{{ fee.student }}</td>
+                            <td>{{student_name}}</td>
+                            <td>{{ fee.session_year_id.session_start_year }} - {{ fee.session_year_id.session_end_year }}</td>
+                            <td>{{ fee.balance }}</td>
+                            <td>{{ fee.fee_type }}</td>
+                            <td>{{ fee.amount }}</td>
+                            <td>{{ fee.total_amount }}</td>
+                            <td>{{ fee.total_paid }}</td>
+                            <td>{{ fee.balance_left }}</td>
+                            <td><a href="{% url 'print_student_fee' %}" class="btn btn-link">Print</a></td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+{% endblock main_content %}
